@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="ar" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGA⁺ - Your Smart Academic Companion</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* 1. المتغيرات والأساسيات */
+        :root {
+            --bg-main: #121212;
+            --bg-frame: #1E1E1E;
+            --bg-frame-neon: #252525;
+            --border-color: #2D2D2D;
+            --neon-green: #00FF66;
+            --btn-green: #05C46B;
+            --btn-green-hover: #33FF88;
+            --text-main: #FFFFFF;
+            --text-muted: #A0A0A0;
+            
+            --btn-orange-start: #FF7A00;
+            --btn-orange-end: #FF9D00;
+            --btn-orange-hover-start: #FF9D00;
+            --btn-orange-hover-end: #FFB732;
+            --btn-orange-pressed: #E66A00;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            outline: none;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* 2. شريط التنقل */
+        header {
+            background-color: rgba(30, 30, 30, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-main);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .logo span {
+            color: var(--neon-green);
+            text-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        nav ul a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s ease;
+        }
+
+        nav ul a:hover {
+            color: var(--neon-green);
+        }
+
+        /* 3. Hero Section */
+        .hero {
+            padding: 160px 20px 80px 20px;
+            text-align: center;
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        #version {
+            background-color: rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            padding: 6px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: var(--text-main);
+        }
+
+        .hero h1 span {
+            color: var(--neon-green);
+            text-shadow: 0 0 15px rgba(0, 255, 102, 0.4);
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.8;
+            text-align: center;
+            direction: rtl;
+        }
+
+        .slogan-box {
+            margin: 25px auto 40px auto;
+            padding: 15px 20px;
+            border-left: 3px solid var(--neon-green);
+            border-right: 3px solid var(--neon-green);
+            background-color: rgba(0, 255, 102, 0.02);
+            display: inline-block;
+            direction: rtl;
+        }
+
+        .slogan-text {
+            font-size: 19px;
+            font-weight: bold;
+            color: var(--neon-green);
+        }
+
+        /* أزرار التحميل */
+        .download-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+            padding: 16px 30px;
+            border-radius: 12px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            min-width: 240px; 
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .btn i {
+            font-size: 26px; /* حجم الأيقونات */
+        }
+
+        .btn-windows {
+            background: linear-gradient(90deg, var(--btn-orange-start), var(--btn-orange-end));
+            color: var(--text-main);
+            border: 1px solid var(--btn-orange-end);
+            box-shadow: 0 4px 15px rgba(255, 122, 0, 0.2);
+        }
+
+        .btn-windows:hover {
+            background: linear-gradient(90deg, var(--btn-orange-hover-start), var(--btn-orange-hover-end));
+            border: 1px solid #FFE066;
+            box-shadow: 0 0 20px rgba(255, 157, 0, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn-linux {
+            background-color: var(--btn-green);
+            color: #121212;
+            border: none;
+        }
+
+        .btn-linux:hover {
+            background-color: var(--btn-green-hover);
+            box-shadow: 0 0 15px rgba(51, 255, 136, 0.4);
+            transform: translateY(-2px);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        /* 4. إعدادات الأقسام */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            color: var(--text-main);
+            margin-bottom: 45px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .section-title::before, .section-title::after {
+            content: "";
+            display: block;
+            width: 40px;
+            height: 2px;
+            background-color: var(--border-color);
+        }
+
+        /* 5. قسم الفيتشرز */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+            direction: rtl;
+        }
+
+        .feature-card {
+            background-color: var(--bg-frame);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 30px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            text-align: right;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-green);
+        }
+
+        .feature-icon {
+            font-size: 35px;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .feature-card h3 {
+            font-size: 20px;
+            color: var(--neon-green);
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        /* 6. قسم الكليات المدعومة */
+        .colleges-container {
+            text-align: center;
+            direction: rtl;
+        }
+
+        .colleges-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .college-badge {
+            background-color: var(--bg-frame);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+
+        .college-badge:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.1);
+            color: var(--neon-green);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-neon {
+            background-color: transparent;
+            color: var(--neon-green);
+            border: 2px solid var(--neon-green);
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .btn-outline-neon:hover {
+            background-color: rgba(0, 255, 102, 0.1);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* 7. قسم الصور */
+        .neon-container {
+            background-color: var(--bg-frame-neon);
+            border: 2px solid var(--neon-green);
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 20px rgba(0, 255, 102, 0.05);
+        }
+
+        .screenshots-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .screenshot-item {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+            cursor: pointer;
+            aspect-ratio: 16 / 9;
+            background-color: #151515;
+        }
+
+        .screenshot-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .screenshot-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .screenshot-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 255, 102, 0.15);
+            opacity: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .screenshot-item:hover .screenshot-overlay {
+            opacity: 1;
+        }
+
+        .screenshot-overlay::after {
+            content: "🔍";
+            font-size: 24px;
+        }
+
+        /* 8. قسم About & Contact */
+        .about-box {
+            background-color: var(--bg-frame);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 50px 40px;
+            max-width: 850px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-bio {
+            font-size: 17px;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            direction: rtl;
+            line-height: 1.7;
+        }
+
+        .contact-grid {
+            display: flex;
+            justify-content: center;
+            gap: 45px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .icon-wrapper {
+            width: 60px;
+            height: 60px;
+            background-color: var(--bg-main);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--text-main);
+            margin-bottom: 12px;
+            transition: all 0.3s ease;
+            font-size: 26px; /* حجم أيقونات التواصل */
+        }
+
+        .contact-item span {
+            font-size: 14px;
+            font-weight: bold;
+            color: var(--text-muted);
+            transition: color 0.3s ease;
+        }
+
+        .contact-item:hover .icon-wrapper {
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+            box-shadow: 0 0 15px rgba(0, 255, 102, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .contact-item:hover span {
+            color: var(--neon-green);
+        }
+
+        /* 9. Lightbox */
+        .lightbox-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(12, 12, 12, 0.96);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 85vh;
+            border-radius: 8px;
+            border: 2px solid var(--neon-green);
+            box-shadow: 0 0 30px rgba(0, 255, 102, 0.2);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            font-size: 35px;
+            color: var(--text-main);
+            cursor: pointer;
+            transition: color 0.3s ease;
+            background: none;
+            border: none;
+        }
+
+        .lightbox-close:hover {
+            color: var(--neon-green);
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="#" class="logo"><span>&lt;</span> SGA⁺ <span>&gt;</span></a>
+            <nav>
+                <ul>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#colleges">Colleges</a></li>
+                    <li><a href="#screenshots">Screenshots</a></li>
+                    <li><a href="#about">About</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div id="version">Stable Release v1.2</div>
+            <h1>Empower Your Academic Journey with <span>SGA⁺</span></h1>
+            
+            <p class="hero-description">
+                SGA مش مجرد ابلكيشن بيحسبلك الـ GPA بتاعك. ده شريك رحلتك في الكلية، من اول الخطة اللي بتحطها في بداية الترم لحد ما تاخد على وشك في الميدتيرم وتخش في مرحلة "هنعوض في الفاينال". وعشان كده هو معمول عشانك مخصوص وماشي على لايحة الكلية بالمللي، وسط زحمة الكلية، والتاسكات، والبروجيكتات اللي بتسحلنا الواحد بيبقى محتاج حاجة تلمله الليلة وتعرفه هو واقف فين بالظبط. فالأبلكيشن ده معمول عشان يجيبلك الخلاصة؛ يتابع معاك التارجت بتاعك أول بأول، يفوقك لو محتاج تشد حيلك شوية، ويطمنك إنك ماشي صح من غير ورقة وقلم ولا وجع دماغ. الرحلة طويلة ومحتاجة نفس، سيب حسبة الدرجات والأرقام علينا، وركز انت في طريقك.
+            </p>
+            
+            <div class="slogan-box">
+                <div class="slogan-text">" اوعى تنسى ان الـ A+ مبتعملش رجالة .. الرجالة هي اللي بتعمل الـ A+ "</div>
+            </div>
+            
+            <div class="download-buttons">
+                <a href="https://github.com/mostafa-hussain-1/SGA/releases/download/v1.2/SGAPlus_Setup.exe" class="btn btn-windows">
+                    <i class="fa-brands fa-windows"></i>
+                    Windows
+                </a>
+                <a href="#" class="btn btn-linux">
+                    <i class="fa-brands fa-linux"></i>
+                    Linux
+                </a>
+            </div>
+        </section>
+
+        <section id="features">
+            <h2 class="section-title">Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <span class="feature-icon">🧮</span>
+                    <h3>حساب الـ GPA من غير وجع دماغ</h3>
+                    <p>انسى الحسابات المعقدة. +SGA بيحسبلك الـ GPA التراكمي والفصلي بدقة ١٠٠٪، وبيتابع معاك الساعات اللي خلصتها، واللي مسموحلك تسجلها الترم الجاي، وحتى الإنذارات الأكاديمية عشان تبقى دايماً في الأمان.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">⚙️</span>
+                    <h3>متفصل على مقاس لايحتك</h3>
+                    <p>كليتك ليها نظام خاص؟ مفيش مشكلة. الأبلكيشن بيفهم لايحة كليتك وبيظبط حساباته عليها بالملي، مهما كان نظام الساعات المعتمدة أو متطلبات التخرج بتاعتك.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">🎯</span>
+                    <h3>حط التارجت وارسم خطتك</h3>
+                    <p>نفسك توصل لـ GPA معين؟ حدد التارجت بتاعك، والأبلكيشن هيقولك بالضبط محتاج تجيب كام الترم ده عشان تحققه، وهل هتقدر توصله في ترم واحد ولا محتاج خطة أطول.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📈</span>
+                    <h3>جرب خطتك قبل ما تمتحن</h3>
+                    <p>ضيف مواد الترم الجاي وحط تقديراتك اللي بتتوقعها. الأبلكيشن هيحسبلك الـ GPA اللي هيطلعلك ويقارنه بالتارجت بتاعك، عشان تعرف إنت ماشي صح ولا محتاج تضغط على نفسك شوية.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">📊</span>
+                    <h3>مستواك دايماً قدام عينك</h3>
+                    <p>تابع تطورك ترم بترمه من خلال رسم بياني (Graph) بسيط وشيك، بيوضحلك التغير في الـ GPA بتاعك عشان تبقى دايماً شايف الصورة كاملة.</p>
+                </div>
+                <div class="feature-card">
+                    <span class="feature-icon">💡</span>
+                    <h3>إحنا هنا عشان نسمعك</h3>
+                    <p>واجهتك مشكلة أو عندك فكرة لـ Feature جديدة نفسك تشوفها؟ من خلال الأبلكيشن تقدر تبعتلنا رأيك، وفي أقرب تحديث هتلاقي اقتراحك أو مشكلتك اتحلت.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="colleges">
+            <h2 class="section-title">Supported Colleges</h2>
+            <div class="colleges-container">
+                <div class="colleges-list">
+                    <div class="college-badge">حاسبات ومعلومات - جامعة عين شمس</div>
+                    <div class="college-badge">حاسبات وذكاء اصطناعي - جامعة القاهرة</div>
+                    <div class="college-badge">هندسة - جامعة عين شمس</div>
+                    <div class="college-badge">هندسة - جامعة حلوان</div>
+                    <div class="college-badge">علوم - جامعة الإسكندرية</div>
+                </div>
+                
+                <a href="#" class="btn-outline-neon">
+                    <i class="fa-solid fa-plus"></i>
+                    كليتك مش موجودة؟ ضيفها من هنا
+                </a>
+            </div>
+        </section>
+
+        <section id="screenshots">
+            <h2 class="section-title">Screenshots</h2>
+            <div class="neon-container">
+                <div class="screenshots-grid">
+                    <div class="screenshot-item" onclick="openLightbox(this)">
+                        <img src="screenshot1.png" alt="SGA Plus Interface">
+                        <div class="screenshot-overlay"></div>
+                    </div>
+                    <div class="screenshot-item" onclick="openLightbox(this)">
+                        <img src="screenshot2.png" alt="GPA Analytics">
+                        <div class="screenshot-overlay"></div>
+                    </div>
+                    <div class="screenshot-item" onclick="openLightbox(this)">
+                        <img src="screenshot3.png" alt="Target Planning">
+                        <div class="screenshot-overlay"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about">
+            <h2 class="section-title">About</h2>
+            <div class="about-box">
+                <p class="about-bio">
+                    مطور برمجيات مهتم ببناء الأنظمة وتطوير أدوات عملية ومؤثرة من الصفر. تم تطوير SGA⁺ ليكون أداة مبنية يدوياً بالكامل (100% Manual Code) لضمان أعلى أداء وأقل استهلاك لموارد الأجهزة، بعيداً عن التعقيد.
+                </p>
+                
+                <div class="contact-grid">
+                    <a href="https://github.com/mostafa-hussain-1" target="_blank" class="contact-item">
+                        <div class="icon-wrapper">
+                            <i class="fa-brands fa-github"></i>
+                        </div>
+                        <span>GitHub</span>
+                    </a>
+                    
+                    <a href="mailto:mostafa.elqady18@gmail.com" class="contact-item">
+                        <div class="icon-wrapper">
+                            <i class="fa-solid fa-envelope"></i>
+                        </div>
+                        <span>Email</span>
+                    </a>
+                    
+                    <a href="https://www.linkedin.com/in/mustafa-elqady/" target="_blank" class="contact-item">
+                        <div class="icon-wrapper">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </div>
+                        <span>LinkedIn</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img id="lightbox-img" class="lightbox-content" src="" alt="Zoomed View">
+    </div>
+
+    <footer>
+        <p>&copy; 2026 SGA⁺ Project. Built with Clean Code.</p>
+    </footer>
+
+    <script>
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+
+        function openLightbox(element) {
+            const imgSrc = element.querySelector('img').src;
+            lightboxImg.src = imgSrc;
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.style.display = 'none';
+            lightboxImg.src = '';
+            document.body.style.overflow = 'auto';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
