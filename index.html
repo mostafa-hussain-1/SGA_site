@@ -662,15 +662,22 @@
         </section>
     </main>
 
+    <!-- 1. تعديل الـ Lightbox عشان الصور تفتح صح -->
     <div id="lightbox" class="lightbox-modal" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-        <p style="color: #aaa; font-size: 14px; margin-bottom: 8px;">معدل الزيارات</p>
-        <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fmostafa-hussain-1.github.io%2FSGA_site%2F&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false" alt="Site Hits" style="display: inline-block;">
+        <!-- دي الصورة اللي كانت ناقصة واللي الـ JS بيدور عليها -->
+        <img id="lightbox-img" class="lightbox-content" src="" alt="Enlarged Screenshot">
     </div>
 
+    <!-- 2. تعديل الـ Footer وإضافة عداد الزيارات بشكل شيك -->
     <footer>
         <p>&copy; 2026 SGA⁺ Project. Built with Clean Code.</p>
-        <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fmostafa-hussain-1.github.io%2FSGA_site%2F&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false"/></a>
+        <div style="margin-top: 15px;">
+            <p style="color: #aaa; font-size: 14px; margin-bottom: 8px;">معدل الزيارات</p>
+            <a href="https://hits.seeyoufarm.com" target="_blank">
+                <img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fmostafa-hussain-1.github.io%2FSGA_site%2F&count_bg=%2305C46B&title_bg=%231E1E1E&icon=&icon_color=%23E7E7E7&title=Visits&edge_flat=false" alt="Site Hits"/>
+            </a>
+        </div>
     </footer>
 
     <script>
