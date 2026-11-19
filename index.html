@@ -14,6 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SGA⁺ - Your Smart Academic Companion</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 483 404' fill='none'%3E%3Crect x='244.845' y='201.506' width='159' height='45.69' fill='%2305C46B'/%3E%3Crect x='366.831' y='48.4536' width='116.014' height='31.4575' rx='15.7287' fill='%2305C46B'/%3E%3Crect x='409.573' y='9.5062' width='32.0565' height='109.352' rx='16.0283' fill='%2305C46B'/%3E%3Cpath d='M197.345 22.845C100.971 22.845 22.845 102.91 22.845 201.676C22.845 300.441 100.971 380.506 197.345 380.506C293.719 380.506 371.845 300.441 371.845 201.676' stroke-width='45.69' stroke='%2305C46B'/%3E%3Crect x='159.845' y='0.506195' width='63' height='45.69' rx='22.845' fill='%2305C46B'/%3E%3Crect width='342.484' height='45.6726' rx='22.8363' transform='matrix(0.385976 0.922509 -0.927544 0.373714 334.882 15.49)' fill='%23FFFFFF'/%3E%3Crect width='342.378' height='45.6863' rx='22.8432' transform='matrix(-0.36381 0.931473 0.935986 0.352038 308.685 15.3829)' fill='%23FFFFFF'/%3E%3Cpath d='M173.845 149.506C173.845 130.506 157.845 118.506 135.845 118.506C113.845 118.506 99.845 130.506 99.845 147.506C99.845 165.506 114.845 173.506 136.845 179.506L152.845 183.506C172.845 189.506 183.845 200.506 183.845 218.506C183.845 238.506 165.845 252.506 139.845 252.506C113.845 252.506 95.845 239.506 93.845 219.506' stroke-width='22' stroke-linecap='round' stroke-linejoin='round' stroke='%23FFFFFF'/%3E%3C/svg%3E">
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -70,25 +71,28 @@
         .nav-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 15px 20px;
+            padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
 
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--text-main);
             text-decoration: none;
-            display: flex;
+            display: inline-flex;
             align-items: center;
-            gap: 5px;
+            transition: transform 0.25s ease, filter 0.25s ease;
         }
 
-        .logo span {
-            color: var(--neon-green);
-            text-shadow: 0 0 10px rgba(0, 255, 102, 0.3);
+        .logo svg {
+            height: 38px;
+            width: auto;
+            display: block;
+        }
+
+        .logo:hover {
+            transform: scale(1.04);
+            filter: drop-shadow(0 0 8px rgba(5, 196, 107, 0.35));
         }
 
         nav ul {
@@ -450,7 +454,6 @@
             background-color: var(--bg-frame);
             border: 1px solid var(--border-color);
             border-radius: 15px;
-            /* قللنا البادنج الجانبي عشان الكلمة متلفش على سطرين */
             padding: 40px 20px; 
             text-align: center;
             position: relative;
@@ -466,7 +469,6 @@
             box-shadow: 0 10px 25px rgba(0, 255, 102, 0.05);
         }
 
-        /* الكارت المميز (السنة) */
         .pricing-card.popular {
             border: 2px solid var(--neon-green);
             background-color: var(--bg-frame-neon);
@@ -529,13 +531,12 @@
 
         .plan-features li {
             color: var(--text-muted);
-            /* صغرنا الخط حاجة بسيطة عشان يحافظ على السطر الواحد */
             font-size: 15px; 
             margin-bottom: 15px;
             display: flex;
             align-items: center;
             gap: 8px;
-            white-space: nowrap; /* إجبار النص يفضل على سطر واحد */
+            white-space: nowrap;
         }
 
         .plan-features li i {
@@ -583,7 +584,6 @@
             border-radius: 10px;
             padding: 25px 15px;
             position: relative;
-            /* السحر هنا: خلينا المحتوى يتسنتر بالطول */
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -605,7 +605,6 @@
             right: 20px;
         }
 
-        /* التعديل هنا: كبرنا الخط وخلينا لونه أبيض */
         .step-box p {
             color: var(--text-main); 
             font-size: 17px;
@@ -784,7 +783,18 @@
 
     <header>
         <div class="nav-container">
-            <a href="#" class="logo"><span>&lt;</span> SGA⁺ <span>&gt;</span></a>
+            <a href="#" class="logo" aria-label="SGA+">
+                <svg viewBox="0 0 483 404" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="244.845" y="201.506" width="159" height="45.69" fill="#05C46B"/>
+                    <rect x="366.831" y="48.4536" width="116.014" height="31.4575" rx="15.7287" fill="#05C46B"/>
+                    <rect x="409.573" y="9.5062" width="32.0565" height="109.352" rx="16.0283" fill="#05C46B"/>
+                    <path d="M197.345 22.845C100.971 22.845 22.845 102.91 22.845 201.676C22.845 300.441 100.971 380.506 197.345 380.506C293.719 380.506 371.845 300.441 371.845 201.676" stroke-width="45.69" stroke="#05C46B"/>
+                    <rect x="159.845" y="0.506195" width="63" height="45.69" rx="22.845" fill="#05C46B"/>
+                    <rect width="342.484" height="45.6726" rx="22.8363" transform="matrix(0.385976 0.922509 -0.927544 0.373714 334.882 15.49)" fill="#FFFFFF"/>
+                    <rect width="342.378" height="45.6863" rx="22.8432" transform="matrix(-0.36381 0.931473 0.935986 0.352038 308.685 15.3829)" fill="#FFFFFF"/>
+                    <path d="M173.845 149.506C173.845 130.506 157.845 118.506 135.845 118.506C113.845 118.506 99.845 130.506 99.845 147.506C99.845 165.506 114.845 173.506 136.845 179.506L152.845 183.506C172.845 189.506 183.845 200.506 183.845 218.506C183.845 238.506 165.845 252.506 139.845 252.506C113.845 252.506 95.845 239.506 93.845 219.506" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" stroke="#FFFFFF"/>
+                </svg>
+            </a>
             <nav>
                 <ul>
                     <li><a href="#features">Features</a></li>
@@ -971,7 +981,6 @@
             <div class="payment-instructions">
                 <h3><i class="fa-solid fa-wallet"></i> خطوات الدفع والتفعيل</h3>
                 <div class="steps-container">
-                    <div class="steps-container">
                     <!-- الخطوة الأولى -->
                     <div class="step-box">
                         <span class="step-number">1</span>
@@ -983,9 +992,8 @@
                     <div class="step-box">
                         <span class="step-number">2</span>
                         <p>احتفظ بصورة لرسالة تأكيد التحويل (Screenshot) أو صورة إيصال الدفع.</p>
-                        <!-- ضفنا الملحوظة دي تملى المكان وتفيد اليوزر -->
                         <span style="display:block; margin-top:12px; color:var(--text-muted); font-size:14px;">
-                            * تأكد إن رقم العملية (Reference Number) يكون واضح في الصورة.
+- تأكد إن رقم العملية (Reference Number) يكون واضح في الصورة.
                         </span>
                     </div>
                     
@@ -993,17 +1001,16 @@
                     <div class="step-box">
                         <span class="step-number">3</span>
                         <p>أرسل الصورة عبر واتساب، وسيتم مراجعتها وإرسال <strong>كود التفعيل (Premium Key)</strong> الخاص بك فوراً.</p>
-                        <!-- ملحوظة كمان تظبط توازن البوكس التالت -->
                         <span style="display:block; margin-top:12px; color:var(--text-muted); font-size:14px;">
-                            * متنساش تكتب الرقم اللي حولت منه مع الصورة، والتفعيل بيتم في أقل من 15 دقيقة.
+- متنساش تكتب الرقم اللي حولت منه مع الصورة، والتفعيل بيتم في أقل من 15 دقيقة.
                         </span>
                     </div>
                 </div>
+                <a href="https://wa.me/201228116773" target="_blank" class="btn-whatsapp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    أرسل إيصال الدفع عبر واتساب
+                </a>
             </div>
-            <a href="https://wa.me/201228116773" target="_blank" class="btn-whatsapp">
-                <i class="fa-brands fa-whatsapp"></i>
-                أرسل إيصال الدفع عبر واتساب
-            </a>
             
         </section>
 
