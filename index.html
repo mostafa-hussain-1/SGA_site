@@ -15,15 +15,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://sgaplus.pages.dev/">
+    <meta property="og:url" content="https://sga-plus.pages.dev/">
     <meta property="og:title" content="SGA⁺ - Your Smart Academic Companion">
     <meta property="og:image" content="https://sga-plus.pages.dev/preview.png">
 
     <!-- Twitter -->
-    <meta property="twitter:card" content="summary_large_image">
-    <meta property="twitter:url" content="https://sgaplus.pages.dev/">
-    <meta property="twitter:title" content="SGA⁺ - Your Smart Academic Companion">
-    <meta property="twitter:image" content="https://sga-plus.pages.dev/preview.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://sga-plus.pages.dev/">
+    <meta name="twitter:title" content="SGA⁺ - Your Smart Academic Companion">
+    <meta name="twitter:image" content="https://sga-plus.pages.dev/preview.png">
     <title>SGA⁺ - Your Smart Academic Companion</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 483 404' fill='none'%3E%3Crect x='244.845' y='201.506' width='159' height='45.69' fill='%2305C46B'/%3E%3Crect x='366.831' y='48.4536' width='116.014' height='31.4575' rx='15.7287' fill='%2305C46B'/%3E%3Crect x='409.573' y='9.5062' width='32.0565' height='109.352' rx='16.0283' fill='%2305C46B'/%3E%3Cpath d='M197.345 22.845C100.971 22.845 22.845 102.91 22.845 201.676C22.845 300.441 100.971 380.506 197.345 380.506C293.719 380.506 371.845 300.441 371.845 201.676' stroke-width='45.69' stroke='%2305C46B'/%3E%3Crect x='159.845' y='0.506195' width='63' height='45.69' rx='22.845' fill='%2305C46B'/%3E%3Crect width='342.484' height='45.6726' rx='22.8363' transform='matrix(0.385976 0.922509 -0.927544 0.373714 334.882 15.49)' fill='%23FFFFFF'/%3E%3Crect width='342.378' height='45.6863' rx='22.8432' transform='matrix(-0.36381 0.931473 0.935986 0.352038 308.685 15.3829)' fill='%23FFFFFF'/%3E%3Cpath d='M173.845 149.506C173.845 130.506 157.845 118.506 135.845 118.506C113.845 118.506 99.845 130.506 99.845 147.506C99.845 165.506 114.845 173.506 136.845 179.506L152.845 183.506C172.845 189.506 183.845 200.506 183.845 218.506C183.845 238.506 165.845 252.506 139.845 252.506C113.845 252.506 95.845 239.506 93.845 219.506' stroke-width='22' stroke-linecap='round' stroke-linejoin='round' stroke='%23FFFFFF'/%3E%3C/svg%3E">
     
@@ -86,6 +86,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .logo {
@@ -106,11 +107,30 @@
             filter: drop-shadow(0 0 8px rgba(5, 196, 107, 0.35));
         }
 
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 20px;
+            width: 42px;
+            height: 42px;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: border-color 0.25s ease, color 0.25s ease;
+        }
+
+        .menu-toggle:hover {
+            border-color: var(--neon-green);
+            color: var(--neon-green);
+        }
+
         nav ul {
             display: flex;
             list-style: none;
             gap: 25px;
-            flex-wrap: wrap;
         }
 
         nav ul a {
@@ -270,7 +290,7 @@
         /* 5. قسم الفيتشرز */
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
             direction: rtl;
         }
@@ -322,6 +342,18 @@
             color: var(--text-muted);
             font-size: 16px;
             line-height: 1.6;
+        }
+
+        /* جملة التجربة المجانية */
+        .free-trial-note {
+            text-align: center;
+            color: var(--neon-green);
+            font-size: 18px;
+            font-weight: bold;
+            direction: rtl;
+            max-width: 800px;
+            margin: -30px auto 10px auto;
+            padding: 0 20px;
         }
 
         /* 6. قسم الكليات المدعومة */
@@ -782,7 +814,65 @@
             font-size: 14px;
         }
         
+        /* استجابة الموبايل */
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: inline-flex;
+            }
+
+            nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(24, 24, 24, 0.98);
+                backdrop-filter: blur(12px);
+                border-bottom: 1px solid var(--border-color);
+                padding: 15px 20px;
+                box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                text-align: center;
+            }
+
+            nav ul li {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+
+            nav ul li:last-child {
+                border-bottom: none;
+            }
+
+            nav ul a {
+                display: block;
+                padding: 14px 0;
+                font-size: 17px;
+            }
+
+            .hero {
+                padding-top: 130px;
+            }
+
+            .hero h1 {
+                font-size: 30px;
+            }
+
+            .section-title {
+                font-size: 26px;
+            }
+
+            .payment-instructions {
+                padding: 25px 18px;
+            }
+
             .btn {
                 width: 100%;
                 justify-content: center;
@@ -806,7 +896,12 @@
                     <path d="M173.845 149.506C173.845 130.506 157.845 118.506 135.845 118.506C113.845 118.506 99.845 130.506 99.845 147.506C99.845 165.506 114.845 173.506 136.845 179.506L152.845 183.506C172.845 189.506 183.845 200.506 183.845 218.506C183.845 238.506 165.845 252.506 139.845 252.506C113.845 252.506 95.845 239.506 93.845 219.506" stroke-width="22" stroke-linecap="round" stroke-linejoin="round" stroke="#FFFFFF"/>
                 </svg>
             </a>
-            <nav>
+
+            <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+
+            <nav id="main-nav">
                 <ul>
                     <li><a href="#features">Features</a></li>
                     <li><a href="#colleges">Colleges</a></li>
@@ -841,10 +936,6 @@
                     Linux
                 </a>
             </div>
-
-            <p style="margin-top: 25px; color: var(--neon-green); font-size: 17px; font-weight: bold; direction: rtl;">
-                نزل الأبلكيشن وجربه أول 30 يوم فور فري 🎁
-            </p>
         </section>
 
         <section id="features">
@@ -891,6 +982,10 @@
 
             </div>
         </section>
+
+        <p class="free-trial-note">
+            نزل الأبلكيشن وجرب الـ Premium Features اول 30 يوم ببلاش 🎁
+        </p>
 
         <section id="colleges">
             <h2 class="section-title">Supported Colleges</h2>
@@ -1064,11 +1159,34 @@
     </div>
 
     <footer>
-        <p>&copy; 2026 SGA⁺ Project. Built with Clean Code.</p>
-        <div style="margin-top: 15px;"> </div>
+        <p>&copy; 2026 SGA⁺ Project.</p>
+        <p style="margin-top: 8px;">
+            Built with <i class="fa-solid fa-heart" style="color: #ff4d4d;"></i> by 
+            <span style="color: var(--neon-green); font-weight: bold;">Mostafa Elqady</span>
+        </p>
     </footer>
 
     <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mainNav = document.getElementById('main-nav');
+        const menuIcon = menuToggle.querySelector('i');
+
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+            menuIcon.classList.toggle('fa-bars');
+            menuIcon.classList.toggle('fa-xmark');
+        });
+
+        mainNav.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                menuIcon.classList.add('fa-bars');
+                menuIcon.classList.remove('fa-xmark');
+            });
+        });
+
+        // Lightbox
         const lightbox = document.getElementById('lightbox');
         const lightboxImg = document.getElementById('lightbox-img');
 
